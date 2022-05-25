@@ -1,19 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Recursive:wght@300;400;500;600;700&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+
 * {
     box-sizing: border-box;
-    --cor-fundo-tela: #E5E5E5;
-    --cor-fundo-header: #C3CFD9;
-    --cor-fundo-footer: #DFE6ED;
-    --cor-laranja: #E8833A; 
-    --cor-azul: #247A6B;
-    --cor-preta: #293845;
+    --cor-fundo-tela-inicial: #FFFFFF;
+    --cor-fundo-header: #126BA5;
+    --cor-fundo-footer: #FFFFFF;
+    --cor-fundo-telas:  #E5E5E5; 
+    --cor-azul-claro: #52B6FF;
+    --cor-azul-escuro: #126BA5;
+    --cor-cinza-claro: #DBDBDB;
+    --cor-cinza-escuro: #666666;
   }
   
   body {
     width: 100vw;
     height: 100vh;
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--cor-fundo-tela);
-    color: var(--cor-preta);
+    font-family: 'Lexend Deca', sans-serif;
+    background-color: var(--cor-fundo-tela-inicial);
+    color: var(--cor-cinza-claro);
   }
   
   body::-webkit-scrollbar {
