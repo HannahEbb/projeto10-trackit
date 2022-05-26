@@ -1,21 +1,50 @@
 import React from 'react';
 import logoInicial from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 import styled from 'styled-components';
 
 
 export default function TelaLogin () {
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+
+    const navigate = useNavigate();
+
+    function fazerLogin (event) {
+        event.preventDefault(); //por causa do form
+
+        const login = {
+            email: email,
+            password: senha
+        }
+
+        const config = {
+            headers: {
+                "Authorization": "Bearer token_recebido"
+            }
+        }
+        
+        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', login, config);
+        promise.then(res => {
+            console.log(res.data);
+            navigate('/hoje')}); 
+            promise.catch(err => {console.log(err)});
+
+
+    }
 
     return(
         <Container>
         <div className="logo-inicial">
             <img src={logoInicial} alt="IMG" width="210px" height="200px" />
         </div>
-        <div>
-            <input type="text" placeholder="  e-mail"></input>
-            <input type="text" placeholder="  senha"></input>
-            <button>Entrar</button>
-        </div>
+        <form onSubmit={fazerLogin}>
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="  e-mail"></input>
+            <input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="  senha"></input>
+            <button type="submit">Entrar</button>
+        </form>
         <div>
             <Link to="/cadastro">
                 <h2>Não tem uma conta? Cadastre-se!</h2>
