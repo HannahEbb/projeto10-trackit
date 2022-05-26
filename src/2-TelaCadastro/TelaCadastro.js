@@ -15,8 +15,6 @@ export default function TelaCadastro () {
     const navigate = useNavigate();
 
 
-
-
     function fazerCadastro (event) {
         event.preventDefault();
         
@@ -30,8 +28,11 @@ export default function TelaCadastro () {
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', signup);
         promise.then(res => {
             console.log(res.data);
-            navigate('/')}); //MANDA PARA TELA1 depois do post!
-        promise.catch(err => {console.log(err)});
+            navigate('/')}); 
+        promise.catch(err => {
+            console.log(err);
+            alert("Preencha os dados corretamente, por favor.");
+        });
 
     }
 
