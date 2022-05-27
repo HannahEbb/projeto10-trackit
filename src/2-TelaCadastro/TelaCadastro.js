@@ -49,7 +49,7 @@ export default function TelaCadastro () {
             <button type="submit">Cadastrar</button>
         </form>
         <div>
-            <Link to="/">
+            <Link style={{textDecoration: 'none'}} to="/">
                 <h2>Já tem cadastro? Faça login!</h2>
             </Link>
         </div>

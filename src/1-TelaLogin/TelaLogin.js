@@ -51,7 +51,7 @@ export default function TelaLogin () {
             <button type="submit">Entrar</button>
         </form>
         <div>
-            <Link to="/cadastro">
+            <Link style={{textDecoration: 'none'}} to="/cadastro">
                 <h2>Não tem uma conta? Cadastre-se!</h2>
             </Link>
         </div>
