@@ -1,4 +1,6 @@
 import React from 'react';
+import { useContext } from "react";
+import UserContext from '../Usercontext';
 import logoInicial from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -11,7 +13,8 @@ import styled from 'styled-components';
 export default function TelaLogin () {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [token, setToken] = useState("");
+    //const [token, setToken] = useState("");
+    const { token, setToken } = useContext(UserContext);
 
     const navigate = useNavigate();
 

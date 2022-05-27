@@ -1,11 +1,36 @@
+import { useState } from 'react';
+import { useContext } from "react";
+import UserContext from '../Usercontext';
+import axios from 'axios';
 import styled from 'styled-components';
+import Card from './Card';
 
 
 export default function Habitos () {
+
+    const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
+    const { token, setToken } = useContext(UserContext);
+
+    const config = {
+        headers: {
+            "Authorization": {token} 
+        }
+    }
+    
+    const promise = axios.get(URL, config);
+    promise.then((response) => {
+        const { data } = response;
+        console.log(data);
+
+    })
+
+
+
     return (
         <Meushabitos>
             <h2>Meus Hábitos</h2>
-            <div>+</div>
+            <div >+</div>
+          
         </Meushabitos>
     );
 }
