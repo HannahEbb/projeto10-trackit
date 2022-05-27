@@ -1,9 +1,9 @@
 import React from 'react';
 import { useContext } from "react";
-import UserContext from '../Usercontext';
+import UserContext from "../UserContext";
+import { useState } from "react";
 import logoInicial from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
 import styled from 'styled-components';
 
@@ -13,8 +13,7 @@ import styled from 'styled-components';
 export default function TelaLogin () {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    //const [token, setToken] = useState("");
-    const { token, setToken } = useContext(UserContext);
+    const { setToken } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -25,18 +24,12 @@ export default function TelaLogin () {
             email: email,
             password: senha
         }
-
-        const config = { //precisa disso quando envia o post? ou só na página que recebe para ter autorização?
-            headers: {
-                "Authorization": {token}
-            }
-        }
         
-        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', login, config);
+        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', login);
         promise.then(res => {
             setToken(res.data.token);
-            console.log(res.data);
-            navigate('/hoje')}); 
+            console.log(res.data.token);
+            navigate('/habitos')}); 
             promise.catch(err => {
                 console.log(err);
                 alert("Dados incorretos! Preencha os campos novamente.")});
