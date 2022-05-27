@@ -1,14 +1,11 @@
 import styled from 'styled-components';
-import { useState } from "react";
 
 
-
-export default function Card() {
-    const [habito, setHabito] = useState("");
+export default function Card({name, days}) {
 
     return(
         <Container>
-            <input type="text" value={habito} onChange={e => setHabito(e.target.value)} placeholder="nome do hábito"></input>
+            <h2>{name}</h2>
             <Semana>
                 <div>D</div>
                 <div>S</div>
@@ -25,7 +22,7 @@ export default function Card() {
 
 const Container = styled.div`
     width: 340px;
-    height: 180px;
+    height: 91px;
     background-color: var(--cor-fundo-footer);
     margin-left: 17px;
     margin-right: 18px;
@@ -35,18 +32,16 @@ const Container = styled.div`
     padding-bottom: 23px;
 
 
-    input {
+    h2 {
+        font-size: 20px;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
-        ::placeholder {
-            color: var(--cor-cinza-claro);
-        }
+        
     }
 
     div {
         width: 40px;
         height: 35px;
-       
     }
 `;
 
