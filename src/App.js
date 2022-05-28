@@ -10,7 +10,8 @@ import TelaHistorico from "./5-TelaHistorico/TelaHistorico";
 export default function App() {
 
      const [token, setToken] = useState("");
-     const contextValue = { token, setToken };
+     const [clicado, setClicado] = useState(false);
+     const contextValue = { token, setToken, clicado, setClicado };
 
     return (
 

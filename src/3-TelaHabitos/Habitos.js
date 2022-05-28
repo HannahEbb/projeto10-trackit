@@ -9,7 +9,7 @@ import Card from "./Card";
 export default function Habitos () {
     const { token } = useContext(UserContext);
 
-    const [habitos, setHabitos] = useState(null);
+    const [habitos, setHabitos] = useState([]);
 
     
     useEffect(() => {
@@ -32,25 +32,29 @@ export default function Habitos () {
 
 }, [token]);
 
+
+function listarHabitos () {
+    if(habitos.length > 0) {
+        return habitos.map(habito => { <Card key={habito.id} name={habito.name} days={habito.days}/>});
+    } else {
+        return <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>;
+    }
+}
+
+const exibirhabitos = listarHabitos();
+
     return (
         <ListarHabitos>
-          { !habitos ? <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-                    :  habitos.map(habito => { <Card key={habito.id} name={habito.name} days={habito.days}/>})
-            }
+          { exibirhabitos }
         </ListarHabitos>
         );
         } 
 
 
 
-// Código que adicione e remove componentes: https://codesandbox.io/s/014-todo-list-strikes-back-forked-06irij?file=/src/components/Todo.js 
-
-
-
 const ListarHabitos = styled.div`
     width: 100%;
-    height: 896px;
-    background-color: var(--cor-cinza-claro);
+    height: 100%px;
     padding-top: 2px;
     padding-left: 20px;
     padding-right: 18px;
