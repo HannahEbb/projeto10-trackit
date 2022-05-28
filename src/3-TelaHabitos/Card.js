@@ -15,7 +15,6 @@ export default function Card({name, days}) {
                 <div>S</div>
                 <div>S</div>
             </Semana>
-
         </Container>
     );
 }
