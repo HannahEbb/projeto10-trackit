@@ -2,25 +2,52 @@ import React, { useState } from 'react';
 import { useContext } from "react";
 import UserContext from "../UserContext";
 import styled from 'styled-components';
-
+import Dia from './Dia';
 
 
 export default function NovoHabito() {
-    const { setClicado } = useContext(UserContext);
+    const { setClicado, token } = useContext(UserContext);
 
     const [texto, setTexto] = useState("");
+    const [diasSelecionados, setDias] = useState([]);
+
+   
+    const dias = [{inicial: "S", id: 1}, 
+                {inicial: "T", id: 2}, 
+                {inicial: "Q", id: 3}, 
+                {inicial: "Q", id: 4}, 
+                {inicial: "S", id: 5},
+                {inicial: "S", id: 6}, 
+                {inicial: "D", id: 7}];
+
+    function toggle (id) {
+        const jaSelecionado = diasSelecionados.some(d => d === id);
+
+        if(diasSelecionados.length===0) {
+            setDias([...diasSelecionados, id]);
+        }
+        if(!jaSelecionado) {
+            setDias([...diasSelecionados, id]);
+        }  else {
+                const novosDias = diasSelecionados.filter(d => d !== id);
+                setDias(novosDias);
+            }
+            console.log(diasSelecionados);
+    } 
 
     return (
         <Container>
             <input type="text" value={texto} onChange={e => setTexto(e.target.value)} placeholder="  nome do hábito"></input>
                 <Semana>
-                    <div>D</div>
-                    <div>S</div>
-                    <div>T</div>
-                    <div>Q</div>
-                    <div>Q</div>
-                    <div>S</div>
-                    <div>S</div>
+                    {dias.map(day => {
+                        const {id , inicial} = day;
+                        const selecionado = diasSelecionados.some(d => d === id);
+                        return (<Dia 
+                            key={id} 
+                            inicial={inicial} 
+                            id={id} 
+                            aoSelecionar={(id) => toggle(id)} selecionado={selecionado}/>)
+                    })}
                 </Semana>
                         <Botoes>
                             <h2 onClick={() => setClicado(false)}>Cancelar</h2>
@@ -29,6 +56,8 @@ export default function NovoHabito() {
         </Container>  
     );
 }
+
+
 
 const Container = styled.div`
     width: 340px;
@@ -61,17 +90,6 @@ const Semana = styled.div`
 
 display: flex;
 
-div {
-    width: 30px;
-    height: 30px;
-    margin-right:4px;
-    border: 1px solid #D5D5D5;
-    border-radius: 5px;
-    font-size: 20px;
-    text-align: center;
-    padding-top: 4px;
-    color: var(--cor-cinza-claro);
-    }
     
 `;
 
@@ -93,5 +111,12 @@ div {
     margin-left: 23px;
     color: var(--cor-fundo-footer);
     }
+
+h2 {
+    font-size: 16px;
+    color: var(--cor-azul-claro);
+
+
+}
     
 `;
