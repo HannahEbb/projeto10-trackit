@@ -24,9 +24,9 @@ export default function Habitos () {
     
     const promise = axios.get(URL, config);
     promise.then((response) => {
-        const { data } = response;
-        if(data.length !==0) {
-            setHabitos(data);  
+        const dados = response.data;
+        if(dados.length !==0) {
+            setHabitos([...dados]); 
         }
     })
 
@@ -35,7 +35,7 @@ export default function Habitos () {
 
 function listarHabitos () {
     if(habitos.length > 0) {
-        return habitos.map(habito => { <Card key={habito.id} name={habito.name} days={habito.days}/>});
+        return habitos.map(habito => { return <Card key={habito.id} habitoId={habito.id} name={habito.name} days={habito.days}/>});
     } else {
         return <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>;
     }

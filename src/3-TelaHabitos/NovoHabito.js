@@ -3,22 +3,24 @@ import { useContext } from "react";
 import UserContext from "../UserContext";
 import styled from 'styled-components';
 import Dia from './Dia';
+import axios from 'axios';
+import Habitos from './Habitos';
 
 
 export default function NovoHabito() {
     const { setClicado, token } = useContext(UserContext);
 
-    const [texto, setTexto] = useState("");
-    const [diasSelecionados, setDias] = useState([]);
 
+    const [diasSelecionados, setDias] = useState([]);
+    const [dadosHabito, setDadosHabito] = useState({})
    
-    const dias = [{inicial: "S", id: 1}, 
-                {inicial: "T", id: 2}, 
-                {inicial: "Q", id: 3}, 
+    const dias = [{inicial: "D", id: 1}, 
+                {inicial: "S", id: 2}, 
+                {inicial: "T", id: 3}, 
                 {inicial: "Q", id: 4}, 
-                {inicial: "S", id: 5},
+                {inicial: "Q", id: 5},
                 {inicial: "S", id: 6}, 
-                {inicial: "D", id: 7}];
+                {inicial: "S", id: 7}];
 
     function toggle (id) {
         const jaSelecionado = diasSelecionados.some(d => d === id);
@@ -35,9 +37,33 @@ export default function NovoHabito() {
             console.log(diasSelecionados);
     } 
 
+    function salvarHabito() {
+        if(diasSelecionados.length > 0) {
+            const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const promise = axios.post(URL, {
+                name: dadosHabito.name,
+                days: diasSelecionados.map(dia => dia)
+            }, config);
+
+            promise.then( response => {
+                console.log(response);
+                setClicado(false);
+                //recarregar componente Habitos!
+            })
+        }
+
+    }
+
     return (
         <Container>
-            <input type="text" value={texto} onChange={e => setTexto(e.target.value)} placeholder="  nome do hábito"></input>
+            <input type="text" value={dadosHabito.name} onChange={e => setDadosHabito({...dadosHabito, name: e.target.value})} placeholder="  nome do hábito"></input>
                 <Semana>
                     {dias.map(day => {
                         const {id , inicial} = day;
@@ -51,7 +77,7 @@ export default function NovoHabito() {
                 </Semana>
                         <Botoes>
                             <h2 onClick={() => setClicado(false)}>Cancelar</h2>
-                            <div>Salvar</div>
+                            <div onClick={salvarHabito}>Salvar</div>
                         </Botoes>
         </Container>  
     );

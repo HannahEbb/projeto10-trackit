@@ -22,6 +22,7 @@ export default function TelaHabitos () {
 const Container = styled.div`
 height: 800px;
 background-color: var(--cor-cinza-claro);
+overflow-y: true;
 `;
 
 //Como adicionar scroll no Container caso tenho o overflow? Projeto Instagram
