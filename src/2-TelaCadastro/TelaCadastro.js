@@ -3,10 +3,11 @@ import logoInicial from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import styled from 'styled-components';
+import styled from 'styled-components'; 
 
 
 export default function TelaCadastro () {
+
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [nome, setNome] = useState("");

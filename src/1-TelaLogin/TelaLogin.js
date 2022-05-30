@@ -29,7 +29,7 @@ export default function TelaLogin () {
         promise.then(res => {
             setToken(res.data.token);
             console.log(res.data.token);
-            navigate('/habitos')}); 
+            navigate('/hoje')}); 
             promise.catch(err => {
                 console.log(err);
                 alert("Dados incorretos! Preencha os campos novamente.")});

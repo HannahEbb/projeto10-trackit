@@ -25,5 +25,4 @@ background-color: var(--cor-cinza-claro);
 overflow-y: true;
 `;
 
-//Como adicionar scroll no Container caso tenho o overflow? Projeto Instagram
 
