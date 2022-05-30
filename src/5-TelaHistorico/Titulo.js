@@ -16,7 +16,7 @@ const Container = styled.div `
     width: 100%
     height: 100px;
     background-color: var(--cor-cinza-claro);
-    padding-top: 28px;
+    padding-top: 100px;
     padding-left: 17px;
     
     p {

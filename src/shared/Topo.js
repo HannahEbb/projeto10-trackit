@@ -26,6 +26,7 @@ const Barra = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center
+    overflow-y: false;
     position: fixed;
     z-index: 1;
     top: 0px; 

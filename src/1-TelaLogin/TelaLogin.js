@@ -7,8 +7,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from 'styled-components';
 
-//usar a biblioteca react-loader-spinner para efeito de 'loading'
-
 
 export default function TelaLogin () {
     const [email, setEmail] = useState("");
@@ -18,7 +16,7 @@ export default function TelaLogin () {
     const navigate = useNavigate();
 
     function fazerLogin (event) {
-        event.preventDefault(); //por causa do form
+        event.preventDefault(); 
 
         const login = {
             email: email,

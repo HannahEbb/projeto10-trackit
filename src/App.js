@@ -11,7 +11,16 @@ export default function App() {
 
      const [token, setToken] = useState("");
      const [clicado, setClicado] = useState(false);
-     const contextValue = { token, setToken, clicado, setClicado };
+     const [realizados, setRealizados] = useState([]); 
+     const [deletados, setDeletados] = useState([]);
+     const [habitosHoje, setHabitosHoje] = useState([]);
+
+
+     const contextValue = { token, setToken, 
+                            clicado, setClicado, 
+                            realizados, setRealizados,
+                            deletados, setDeletados,
+                            habitosHoje, setHabitosHoje };
 
     return (
 

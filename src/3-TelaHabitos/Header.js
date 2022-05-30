@@ -11,25 +11,29 @@ export default function Header() {
     const { clicado, setClicado } = useContext(UserContext);
 
     return (
-    <>
+    <Container>
         <MeusHabitos>
         <h2>Meus Hábitos</h2>
         <div onClick={() => setClicado(true)}>+</div>
         </MeusHabitos>
         {clicado ? <NovoHabito /> : null}
-    </>
+    </Container>
     );
     }
 
-
+const Container = styled.div`
+    background-color: var(--cor-cinza-claro);
+`
 const MeusHabitos = styled.div`
     width: 100%;
     height: 70px;
     display: flex;
     justify-content: space-between;
-    padding-top: 28px;
+    padding-top: 100px;
+    padding-bottom: 50px;
     padding-left: 17px;
     padding-right: 18px;
+    background-color: var(--cor-cinza-claro);
 
     h2 {
         color: var(--cor-azul-escuro);

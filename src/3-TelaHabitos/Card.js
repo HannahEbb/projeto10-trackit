@@ -7,7 +7,7 @@ import lixo from "../assets/bin.png";
 
 
 export default function Card({ habitoId, name, days }) {
-    const { token } = useContext(UserContext);
+    const { token, deletados, setDeletados } = useContext(UserContext);
     
     const id = [1, 2, 3, 4, 5, 6, 7]
 
@@ -48,12 +48,13 @@ export default function Card({ habitoId, name, days }) {
   
           axios.delete(URL, config)  
           .then(res => {  
+            setDeletados([...deletados, habitoId]);
             console.log(res);  
             console.log(res.data)}); 
+            console.log(deletados);
             //recarregar componente Habitos!
 
     }
-
 
     return(
         <Container>

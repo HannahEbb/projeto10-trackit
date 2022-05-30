@@ -4,12 +4,10 @@ import UserContext from "../UserContext";
 import styled from 'styled-components';
 import Dia from './Dia';
 import axios from 'axios';
-import Habitos from './Habitos';
 
 
 export default function NovoHabito() {
-    const { setClicado, token } = useContext(UserContext);
-
+    const { setClicado, token, deletados, setDeletados } = useContext(UserContext);
 
     const [diasSelecionados, setDias] = useState([]);
     const [dadosHabito, setDadosHabito] = useState({})
@@ -53,9 +51,9 @@ export default function NovoHabito() {
             }, config);
 
             promise.then( response => {
+                setDeletados([...deletados, token]);
                 console.log(response);
                 setClicado(false);
-                //recarregar componente Habitos!
             })
         }
 
@@ -82,7 +80,6 @@ export default function NovoHabito() {
         </Container>  
     );
 }
-
 
 
 const Container = styled.div`
@@ -114,35 +111,33 @@ const Container = styled.div`
 
 const Semana = styled.div`
 
-display: flex;
-
+    display: flex;
     
 `;
 
 const Botoes = styled.div`
 
-display: flex;
-justify-content: flex-end;
-align-items: center;
-margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 25px;
 
-div {
-    width: 84px;
-    height: 35px;
-    border-radius: 5px;
-    background-color: var(--cor-azul-claro);
-    font-size: 16px;
-    text-align: center;
-    padding-top: 8px;
-    margin-left: 23px;
-    color: var(--cor-fundo-footer);
+    div {
+        width: 84px;
+        height: 35px;
+        border-radius: 5px;
+        background-color: var(--cor-azul-claro);
+        font-size: 16px;
+        text-align: center;
+        padding-top: 8px;
+        margin-left: 23px;
+        color: var(--cor-fundo-footer);
+        }
+
+    h2 {
+        font-size: 16px;
+        color: var(--cor-azul-claro);
+
     }
-
-h2 {
-    font-size: 16px;
-    color: var(--cor-azul-claro);
-
-
-}
     
 `;

@@ -8,21 +8,14 @@ export default function TelaHabitos () {
 
     return(
        <>
-      
         <Topo />
-        <Container>
-            <Header />
-            <Habitos />
-            <Menu />
-        </Container>
+        <Header />
+        <Habitos />
+        <Menu />
        </>
     );
 }
 
-const Container = styled.div`
-height: 800px;
-background-color: var(--cor-cinza-claro);
-overflow-y: true;
-`;
+
 
 
